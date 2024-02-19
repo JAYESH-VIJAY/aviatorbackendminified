@@ -1,0 +1,381 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model d {
+  id     Int     @id @default(autoincrement())
+  period BigInt? @default(0)
+  result String  @default("0") @db.VarChar(5)
+  game   Int     @default(1)
+  status Int?    @default(0)
+  time   String  @default("0") @db.VarChar(50)
+
+  @@map("5d")
+}
+
+model admin {
+  id       Int     @id @default(autoincrement())
+  wingo1   String  @default("'-1'") @db.VarChar(255)
+  wingo3   String  @default("'-1'") @db.VarChar(255)
+  wingo5   String  @default("'-1'") @db.VarChar(255)
+  wingo10  String  @default("'-1'") @db.VarChar(255)
+  k5d      String  @default("'-1'") @db.VarChar(255)
+  k5d3     String  @default("'-1'") @db.VarChar(255)
+  k5d5     String? @default("'-1'") @db.VarChar(255)
+  k5d10    String  @default("'-1'") @db.VarChar(255)
+  k3d      String  @default("'-1'") @db.VarChar(255)
+  k3d3     String  @default("'-1'") @db.VarChar(255)
+  k3d5     String  @default("'-1'") @db.VarChar(255)
+  k3d10    String  @default("'-1'") @db.VarChar(255)
+  win_rate Int     @default(0)
+  telegram String  @default("0") @db.VarChar(100)
+  cskh     String  @default("0") @db.VarChar(100)
+  app      String? @default("0") @db.VarChar(255)
+}
+
+model bank_recharge {
+  id        Int    @id @default(autoincrement())
+  name_bank String @default("0") @db.VarChar(50)
+  name_user String @default("0") @db.VarChar(100)
+  stk       String @default("0") @db.VarChar(100)
+  type      String @default("bank") @db.VarChar(20)
+  upi       String @default("0") @db.VarChar(211)
+  time      String @default("0") @db.VarChar(30)
+}
+
+model financial_details {
+  id         Int    @id @default(autoincrement())
+  phone      String @default("0") @db.VarChar(50)
+  phone_used String @default("0") @db.VarChar(50)
+  money      Int    @default(0)
+  type       String @default("0") @db.VarChar(50)
+  time       String @default("0") @db.VarChar(50)
+}
+
+model k3 {
+  id     Int    @id @default(autoincrement())
+  period BigInt @default(0)
+  result Int
+  game   Int    @default(1)
+  status Int    @default(0)
+  time   String @default("0") @db.VarChar(100)
+}
+
+model level {
+  id    Int    @id @default(autoincrement())
+  level Int    @default(0)
+  f1    String @db.VarChar(50)
+  f2    String @db.VarChar(50)
+  f3    String @db.VarChar(50)
+  f4    String @db.VarChar(50)
+}
+
+model minutes_1 {
+  id         Int    @id @default(autoincrement())
+  id_product String @default("0") @db.VarChar(100)
+  phone      String @default("0") @db.VarChar(20)
+  code       String @default("0") @db.VarChar(30)
+  invite     String @default("0") @db.VarChar(30)
+  stage      String @default("0") @db.VarChar(255)
+  result     Int    @default(0)
+  more       Int    @default(0)
+  level      Int    @default(0)
+  money      Int    @default(0)
+  amount     Int    @default(0)
+  fee        Int    @default(0)
+  get        Int    @default(0)
+  game       String @default("0") @db.VarChar(50)
+  bet        String @default("0") @db.VarChar(10)
+  status     Int    @default(0)
+  today      String @default("0") @db.VarChar(50)
+  time       String @default("0") @db.VarChar(30)
+}
+
+model point_list {
+  id       Int    @id @default(autoincrement())
+  phone    String @default("0") @db.VarChar(50)
+  telegram String @default("0") @db.VarChar(100)
+  money    Int    @default(0)
+  money_us Int    @default(0)
+  level    Int    @default(0)
+  total1   Int    @default(2)
+  total2   Int    @default(4)
+  total3   Int?   @default(8)
+  total4   Int    @default(16)
+  total5   Int    @default(24)
+  total6   Int    @default(28)
+  total7   Int    @default(30)
+}
+
+model recharge {
+  id             Int    @id @default(autoincrement())
+  id_order       String @default("0") @db.VarChar(100)
+  transaction_id String @default("0") @db.VarChar(100)
+  phone          String @default("0") @db.VarChar(50)
+  money          Int    @default(0)
+  type           String @default("0") @db.VarChar(10)
+  status         Int    @default(0)
+  today          String @default("0") @db.VarChar(50)
+  url            String @default("0") @db.VarChar(255)
+  time           String @default("0") @db.VarChar(30)
+  utr            String @default("0") @db.VarChar(100)
+}
+
+model redenvelopes {
+  id             Int    @id @default(autoincrement())
+  id_redenvelope String @default("0") @db.VarChar(100)
+  phone          String @default("0") @db.VarChar(50)
+  money          Int    @default(0)
+  used           Int    @default(0)
+  amount         Int    @default(0)
+  status         Int    @default(0)
+  time           String @default("0") @db.VarChar(50)
+}
+
+model redenvelopes_used {
+  id             Int    @id @default(autoincrement())
+  phone          String @default("0") @db.VarChar(50)
+  phone_used     String @default("0") @db.VarChar(50)
+  id_redenvelops String @default("0") @db.VarChar(50)
+  money          Int    @default(0)
+  time           String @default("0") @db.VarChar(50)
+}
+
+model refer {
+  id                 Int @id @default(autoincrement())
+  parentCommission   Int @default(50)
+  notReferCommission Int @default(50)
+  friendCommission   Int @default(100)
+  mwa                Int @default(250)
+}
+
+model result_5d {
+  id         Int     @id @default(autoincrement())
+  id_product String  @default("0") @db.VarChar(100)
+  phone      String? @default("0") @db.VarChar(20)
+  code       String  @default("0") @db.VarChar(30)
+  invite     String  @default("0") @db.VarChar(30)
+  stage      BigInt? @default(0)
+  result     String  @default("0") @db.VarChar(5)
+  level      Int     @default(0)
+  money      Int     @default(0)
+  price      Int     @default(0)
+  amount     Int     @default(0)
+  fee        Int     @default(0)
+  get        Int     @default(0)
+  game       Int
+  join_bet   String  @default("0") @db.VarChar(10)
+  bet        String  @default("0") @db.VarChar(20)
+  status     Int     @default(0)
+  time       String  @default("0") @db.VarChar(50)
+}
+
+model result_k3 {
+  id         Int    @id @default(autoincrement())
+  id_product String @default("0") @db.VarChar(100)
+  phone      String @default("0") @db.VarChar(50)
+  code       String @default("0") @db.VarChar(50)
+  invite     String @default("0") @db.VarChar(50)
+  stage      String @default("0") @db.VarChar(50)
+  result     String @default("0") @db.VarChar(5)
+  level      Int    @default(0)
+  money      Int    @default(0)
+  price      Int    @default(0)
+  amount     Int    @default(0)
+  fee        Int    @default(0)
+  get        Int    @default(0)
+  game       String @default("0") @db.VarChar(5)
+  join_bet   String @default("0") @db.VarChar(100)
+  typeGame   String @default("0") @db.VarChar(100)
+  bet        String @default("0") @db.VarChar(100)
+  status     Int    @default(0)
+  time       String @default("0") @db.VarChar(50)
+}
+
+model roses {
+  id     Int     @id @default(autoincrement())
+  phone  String  @default("0") @db.VarChar(50)
+  code   String  @default("0") @db.VarChar(50)
+  invite String  @default("0") @db.VarChar(50)
+  f1     Int     @default(0)
+  f2     Int     @default(0)
+  f3     Int     @default(0)
+  f4     Int     @default(0)
+  time   String? @default("0") @db.VarChar(50)
+}
+
+model user_bank {
+  id        Int     @id @default(autoincrement())
+  phone     String  @default("0") @db.VarChar(50)
+  name_bank String  @default("0") @db.VarChar(100)
+  name_user String? @default("0") @db.VarChar(100)
+  account   String  @db.VarChar(100)
+  ifsc      String  @db.VarChar(100)
+  stk       String  @default("0") @db.VarChar(100)
+  tp        String  @default("0") @db.VarChar(100)
+  email     String  @default("0") @db.VarChar(100)
+  sdt       String? @default("0") @db.VarChar(20)
+  tinh      String  @default("0") @db.VarChar(100)
+  chi_nhanh String  @default("0") @db.VarChar(100)
+  time      String  @default("0") @db.VarChar(30)
+}
+
+model users {
+  id          Int    @id @default(autoincrement())
+  id_user     String @default("0") @db.VarChar(50)
+  phone       String @default("0") @db.VarChar(20)
+  token       String @default("0") @db.VarChar(500)
+  name_user   String @default("0") @db.VarChar(50)
+  password    String @default("0") @db.VarChar(50)
+  money       Int    @default(0)
+  total_money Int    @default(0)
+  roses_f1    Int    @default(0)
+  roses_f     Int    @default(0)
+  roses_today Int    @default(0)
+  level       Int    @default(0)
+  rank        Int    @default(0)
+  code        String @default("0") @db.VarChar(30)
+  invite      String @default("0") @db.VarChar(30)
+  ctv         String @default("0") @db.VarChar(50)
+  veri        Int    @default(0)
+  otp         String @default("0") @db.VarChar(10)
+  ip_address  String @default("0") @db.VarChar(50)
+  status      Int    @default(0)
+  time        String @default("0") @db.VarChar(50)
+  time_otp    String @default("0") @db.VarChar(50)
+  bonus       Float  @default(0) @db.Float
+}
+
+model wingo {
+  id     Int    @id @default(autoincrement())
+  period String @db.VarChar(100)
+  amount Int    @default(0)
+  game   String @default("0") @db.VarChar(10)
+  status Int    @default(0)
+  time   String @db.VarChar(30)
+}
+
+model withdraw {
+  id        Int    @id @default(autoincrement())
+  id_order  String @default("0") @db.VarChar(100)
+  phone     String @default("0") @db.VarChar(50)
+  money     Int    @default(0)
+  account   String @db.VarChar(100)
+  ifsc      String @db.VarChar(100)
+  stk       String @default("0") @db.VarChar(100)
+  name_bank String @default("0") @db.VarChar(100)
+  name_user String @default("0") @db.VarChar(100)
+  status    Int    @default(0)
+  today     String @default("0") @db.VarChar(50)
+  time      String @default("0") @db.VarChar(30)
+}
+
+model bank {
+  id        Int    @id @default(autoincrement())
+  phone     String @default("0") @db.VarChar(50)
+  account   String @db.VarChar(100)
+  ifsc      String @db.VarChar(100)
+  stk       String @default("0") @db.VarChar(100)
+  name_bank String @default("0") @db.VarChar(100)
+  name_user String @default("0") @db.VarChar(100)
+  email     String @default("@")
+  gender    String @default("")
+  name      String @default("")
+}
+
+model aviatorrecharge {
+  id              Int    @id @default(autoincrement())
+  amount          String @default("0")
+  customer_email  String
+  customer_mobile String
+  customer_name   String
+  client_txn_id   Int
+  createdAt       String
+  customer_vpa    String
+  ip              String
+  orderId         Int
+  status          String
+  txnAt           String
+  upi_txn_id      String
+}
+
+
+model aviatorrechargesecond {
+  id        Int    @id @default(autoincrement())
+  name      String?
+  email     String?
+  amount    String @default("0")
+  phone     String @default("0") @db.VarChar(20)
+  txn_id    String?
+  createdAt DateTime @default(now())
+  status    String @default("0")
+  screenshot String
+  mobile String?
+}
+
+model banksettings {
+  id        Int    @id @default(autoincrement())
+  key       String @default("")
+  keyenable Int    @default(0)
+}
+
+model crashedplane {
+  id Int    @id @default(autoincrement())
+  nl String @default("5")
+  nh String @default("10")
+  sl String @default("1")
+  sh String @default("3")
+  sp String @default("70")
+  sm String @default("1.3")
+  ml String @default("1")
+  mh String @default("2")
+  mr String @default("10")
+  da String @default("40")
+}
+
+model adminbank {
+  id                Int     @id @default(autoincrement())
+  bankName          String
+  accountNumber     String
+  accountHolderName String
+  ifscCode          String
+  mobileNumber      String
+  upiId             String
+  barCode           String?
+}
+
+model aviator {
+  id             Int       @id @default(autoincrement())
+  phone          String    @default("0") @db.VarChar(50)
+  betAmount      Int
+  withdrawAmount Int       @default(0)
+  multiplier     Float     @default(0)
+  betTime        DateTime  @default(now())
+  withdrawTime   DateTime?
+}
+
+model autoaviator {
+  id             Int       @id @default(autoincrement())
+  phone          String    @default("0") @db.VarChar(50)
+  betAmount      Int
+  withdrawAmount Int       @default(0)
+  multiplier     Float     @default(0)
+  betTime        DateTime  @default(now())
+  withdrawTime   DateTime?
+}
+
+model bettime {
+  id   Int    @id @default(autoincrement())
+  time String @default("0")
+}
+
+model aviatoradmin {
+  id       Int     @id @default(autoincrement())
+  username String @default("admin")
+  password String? @default("admin@123")
+}
