@@ -232,8 +232,10 @@ model users {
   phone       String @default("0") @db.VarChar(20)
   token       String @default("0") @db.VarChar(500)
   name_user   String @default("0") @db.VarChar(50)
+  name        String @default("0") @db.VarChar(100)
   password    String @default("0") @db.VarChar(50)
   money       Int    @default(0)
+  bonusMoney       Int    @default(0)
   total_money Int    @default(0)
   roses_f1    Int    @default(0)
   roses_f     Int    @default(0)
@@ -305,18 +307,17 @@ model aviatorrecharge {
   upi_txn_id      String
 }
 
-
 model aviatorrechargesecond {
-  id        Int    @id @default(autoincrement())
-  name      String?
-  email     String?
-  amount    String @default("0")
-  phone     String @default("0") @db.VarChar(20)
-  txn_id    String?
-  createdAt DateTime @default(now())
-  status    String @default("0")
+  id         Int      @id @default(autoincrement())
+  name       String?
+  email      String?
+  amount     String   @default("0")
+  phone      String   @default("0") @db.VarChar(20)
+  txn_id     String?
+  createdAt  DateTime @default(now())
+  status     String   @default("0")
   screenshot String
-  mobile String?
+  mobile     String?
 }
 
 model banksettings {
@@ -377,6 +378,6 @@ model bettime {
 
 model aviatoradmin {
   id       Int     @id @default(autoincrement())
-  username String @default("admin")
+  username String  @default("admin")
   password String? @default("admin@123")
 }
