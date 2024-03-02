@@ -5,14 +5,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start:dev": "node output.min.js",
+    "start:dev": "nodemon app.js",
     "prisma": "prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "5.9.1",
+    "@prisma/client": "^5.9.1",
     "axios": "^1.6.5",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -25,11 +25,12 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.6.5",
     "mysql2-promise": "^0.1.4",
+    "node-cache": "^5.1.2",
     "nodemon": "latest",
     "rollup-plugin-terser": "^7.0.2",
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
-    "prisma": "^5.8.1"
+    "prisma": "^5.9.1"
   }
 }
