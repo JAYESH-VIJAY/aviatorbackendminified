@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start:dev": "nodemon app.js",
+    "start:dev": "node output.min.js",
     "prisma": "prisma studio"
   },
   "keywords": [],
